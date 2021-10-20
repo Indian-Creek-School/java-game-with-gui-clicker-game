@@ -27,6 +27,7 @@ public class Tester {
         System.out.println();
         
         solver.setMultiplier(3);
+        solver.addOneSolver();
         System.out.println(solver.getMultiplier());
         solver.addToMultiplier(3);
         System.out.println(solver.getMultiplier());
