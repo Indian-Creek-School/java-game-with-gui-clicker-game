@@ -60,11 +60,38 @@ public class Game extends JFrame{
 
         //holds the list of specifications (contstraints) for each panel
         ArrayList<Panel> panels = new ArrayList<Panel>();
+        GridBagConstraints c = new GridBagConstraints();
 
-        GridBagConstraints problemConstraints = new GridBagConstraints();
+
+
+        //for each panel type/thing, has its own specific constraints and type set here
         JPanel problemJPanel = new JPanel();
-        Panel problemPanel = new Panel(problemConstraints, problemJPanel,"ProblemGenerator");
+        c.gridx = 0; 
+        c.gridy = 0; 
+        Panel problemPanel = new Panel(c, problemJPanel,"ProblemGenerator");
         panels.add(problemPanel);
+
+        //for each panel type/thing, has its own specific constraints and type set here
+        JPanel solJPan = new JPanel();
+        c.gridx = 1; 
+        c.gridy = 0; 
+        Panel solverPanel = new Panel(c, solJPan,"ProblemSolverBox");
+        panels.add(solverPanel);
+        
+        //for each panel type/thing, has its own specific constraints and type set here
+        JPanel solJPanL2 = new JPanel();
+        c.gridx = 1; 
+        c.gridy = 0; 
+        Panel solverLevel2Panel = new Panel(c, solJPanL2,"ProblemSolverBox");
+        panels.add(solverLevel2Panel);
+
+        //for each panel type/thing, has its own specific constraints and type set here
+        JPanel dispJPan = new JPanel();
+        c.gridx = 1; 
+        c.gridy = 0; 
+        Panel displayPanel = new Panel(c, dispJPan,"ProblemSolverBox");
+        panels.add(displayPanel);
+
 
         
         //For each component to be added to this container:
