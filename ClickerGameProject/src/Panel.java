@@ -37,27 +37,22 @@ public class Panel {
             } );
         }
 
-        /* if (object instanceof ProblemSolverBox) {
-            ProblemSolverBox problem = new ProblemSolverBox(1,"Level 1 Solver"); //make new instance of ProblemSolverBox object
-            //when the button is called, use the .addOneSolver
+        if (object.equals("ProblemSolverBox")) {
+            return;
+        }
+        
+        if (object.equals("ProblemSolverBoxLVL2")) {
+            return;
+        }
 
-            JButton aaa = new JButton("add problem Solver");
-            aaa.setSize(100,100); //sets the size of the button in pixels
-            aaa.setVisible(true); //makes the button visible
+        if (object.equals("Display1")) {
+            return;
+        }
 
-            aaa.addActionListener(new ActionListener(){
-                 @Override
-                public void actionPerformed(ActionEvent e) {
-                problem.addOneSolver();
-                }
-            });
 
-            
-            //this button adds another ProblemSolver amount
-            //this displays the amount of problem solvers that exist
-            //...
-            //do something
-        } */
+
+
+
     }
     public void updateWindow() {
         return;
