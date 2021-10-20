@@ -61,7 +61,7 @@ public class Game extends JFrame{
         //holds the list of specifications (contstraints) for each panel
         ArrayList<Panel> panels = new ArrayList<Panel>();
 
-        GridBagConstraints problemConstraints = new GridBagConstraints();
+        GridBagConstraints problemConstraints = new GridBagConstraints(19);
         JPanel problemJPanel = new JPanel();
         Panel problemPanel = new Panel(problemConstraints, problemJPanel,"ProblemGenerator");
         panels.add(problemPanel);
