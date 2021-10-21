@@ -20,17 +20,23 @@ public class Panel {
     public Object getObject() { return object; }
     public GridBagConstraints getConstraints() { return constraint; }
 
+
     public void makeWindow() {
         if (object.equals("ProblemGenerator")) {
             ProblemGenerator problem = new ProblemGenerator();
             problem.generateQuestion();
 
+            JLabel display = new JLabel(problem.getQuestion());
             JFormattedTextField answerTxt = new JFormattedTextField(10);
             JButton submitBtn = new JButton("Submit");
+
             submitBtn.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    //dosomething with text answerTxt.getText();
+                    if(answerTxt.getText().equals(Integer.toString(problem.getAnswer()))) {
+                        Game.addBits(1);
+                        e.getSource().
+                    }
                     answerTxt.setText(null);
                 } 
             } );
@@ -39,12 +45,14 @@ public class Panel {
         if (object.equals("ProblemSolverBox")) {
             ProblemSolverBox solver = new ProblemSolverBox(1, "Automated Problem Solver");
             JButton addOne = new JButton("Buy Solver!");
+            JLabel display = new JLabel("0");
             addOne.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if(Game.getFreeBits() >= 10) {
                         Game.useBits(10);
                         solver.addOneSolver();
+                        display.setText("Solvers:" + solver.getAmount());
                     }
                 }
             });
@@ -58,13 +66,23 @@ public class Panel {
             return;
         }
 
-
-
-
-
     }
     public void updateWindow() {
-        return;
+        if (object.equals("ProblemGenerator")) {
+
+        }
+
+        if (object.equals("ProblemSolverBox")) { 
+
+        }
+
+        if (object.equals("ProblemSolverBoxLVL2")) {
+            return;
+        }
+
+        if (object.equals("Display1")) {
+            return;
+        }
         //should update one time-steps worth
     }
 }
