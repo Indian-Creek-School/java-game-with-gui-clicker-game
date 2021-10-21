@@ -6,9 +6,8 @@ import java.awt.event.*;
 public class Panel {
     private GridBagConstraints constraint;
     private JPanel panel;
-
-    //type of object to be stored/used in the specific panel
     private String object;
+
     
 
     public Panel(GridBagConstraints c, JPanel p, String o) {
@@ -39,8 +38,16 @@ public class Panel {
 
         if (object.equals("ProblemSolverBox")) {
             ProblemSolverBox solver = new ProblemSolverBox(1, "Automated Problem Solver");
-            
-
+            JButton addOne = new JButton("Buy Solver!");
+            addOne.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(Game.getFreeBits() >= 10) {
+                        Game.useBits(10);
+                        solver.addOneSolver();
+                    }
+                }
+            });
         }
         
         if (object.equals("ProblemSolverBoxLVL2")) {
