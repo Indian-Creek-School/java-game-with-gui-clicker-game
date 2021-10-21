@@ -11,10 +11,10 @@ public class Panel {
     private String object;
     
 
-    public Panel(GridBagConstraints c, JPanel p,  Object o) {
+    public Panel(GridBagConstraints c, JPanel p, String o) {
         constraint = c; //this is the constraints for OUTSIDE OF THE PANEL (inside the mainPanel); NOT THE INSIDE
         panel = p; //panel that will be edited
-        //object = o; object type that will be placed within the panel 
+        object = o; //object type that will be used
     }
 
     public JPanel getPanel() { return panel; }
@@ -38,7 +38,9 @@ public class Panel {
         }
 
         if (object.equals("ProblemSolverBox")) {
-            return;
+            ProblemSolverBox solver = new ProblemSolverBox(1, "Automated Problem Solver");
+            
+
         }
         
         if (object.equals("ProblemSolverBoxLVL2")) {
