@@ -11,10 +11,10 @@ public class Panel {
     private String object;
     
 
-    public Panel(GridBagConstraints c, JPanel p,  Object o) {
+    public Panel(GridBagConstraints c, JPanel p, String o) {
         constraint = c; //this is the constraints for OUTSIDE OF THE PANEL (inside the mainPanel); NOT THE INSIDE
         panel = p; //panel that will be edited
-        //object = o; object type that will be placed within the panel 
+        object = o; //object type that will be used
     }
 
     public JPanel getPanel() { return panel; }
@@ -37,27 +37,24 @@ public class Panel {
             } );
         }
 
-        /* if (object instanceof ProblemSolverBox) {
-            ProblemSolverBox problem = new ProblemSolverBox(1,"Level 1 Solver"); //make new instance of ProblemSolverBox object
-            //when the button is called, use the .addOneSolver
-
-            JButton aaa = new JButton("add problem Solver");
-            aaa.setSize(100,100); //sets the size of the button in pixels
-            aaa.setVisible(true); //makes the button visible
-
-            aaa.addActionListener(new ActionListener(){
-                 @Override
-                public void actionPerformed(ActionEvent e) {
-                problem.addOneSolver();
-                }
-            });
-
+        if (object.equals("ProblemSolverBox")) {
+            ProblemSolverBox solver = new ProblemSolverBox(1, "Automated Problem Solver");
             
-            //this button adds another ProblemSolver amount
-            //this displays the amount of problem solvers that exist
-            //...
-            //do something
-        } */
+
+        }
+        
+        if (object.equals("ProblemSolverBoxLVL2")) {
+            return;
+        }
+
+        if (object.equals("Display1")) {
+            return;
+        }
+
+
+
+
+
     }
     public void updateWindow() {
         return;
