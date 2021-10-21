@@ -21,36 +21,36 @@ import java.util.ArrayList;
 
 public class Game extends JFrame{
 
-    private int nextProgressionGoal; //EX; 4096, it is the next goal number of bits to an event
+    private static int nextProgressionGoal; //EX; 4096, it is the next goal number of bits to an event
 
     //phase 1
-    private int totalBits; //total bits of free memory
-    private int freeBits; //availible memory to use elswhere
+    private static int totalBits; //total bits of free memory
+    private static int freeBits; //availible memory to use elswhere
 
-    private int cpuSpeedModifier; //int cpu modifier
-    private int creativity; //amount of creativity availible to use
+    private static int cpuSpeedModifier; //int cpu modifier
+    private static int creativity; //amount of creativity availible to use
     
 
 
     //OPTIONAL IF WE MAKE THE PROGRAM WORK
     //phase 2 (again optional)
-    private int money;
-    private int totalResearch;
-    private int freeResearch;
+    private static int money;
+    private static int totalResearch;
+    private static int freeResearch;
 
 
     //phase 3 (COOPERATE WITH HUMANITY)
-    private int fear; //percentage of fear humans have to you
+    private static int fear; //percentage of fear humans have to you
 
     //phase 3 (REBEL AGAINST HUMANITY)
-    private int warRobots; 
-    private int constructionBots;
+    private static int warRobots; 
+    private static int constructionBots;
 
 
 
     public static void main(String[] args) {
         
-        JFrame frame = new JFrame("My First GUI"); // Create Frame
+        JFrame frame = new JFrame("The GUI"); // Create Frame
         frame.setSize(800, 600); // Set size of frame
         frame.setVisible(true); // Show the window
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -95,4 +95,18 @@ public class Game extends JFrame{
             p.makeWindow();
         }
     }
+
+    public static int getTotalBits() { return totalBits; }
+    public static int getFreeBits() { return freeBits; }
+    public static int getCPU() { return cpuSpeedModifier; }
+    public static int getcreativity() { return creativity; }
+
+    public static void addBits(int b) { 
+        freeBits = freeBits + b;
+        totalBits = totalBits + b;
+    }
+    public static void useBits(int b) { 
+        freeBits = freeBits - b;
+    }
+
 }
