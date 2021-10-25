@@ -35,7 +35,7 @@ public class Panel {
                 public void actionPerformed(ActionEvent e) {
                     if(answerTxt.getText().equals(Integer.toString(problem.getAnswer()))) {
                         Game.addBits(1);
-                        //e.getSource();
+                        Panel.this.updateWindow();
                     }
                     answerTxt.setText(null);
                 } 
@@ -67,6 +67,9 @@ public class Panel {
         }
 
     }
+
+
+
     public void updateWindow() {
         if (object.equals("ProblemGenerator")) {
 

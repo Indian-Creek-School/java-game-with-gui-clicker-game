@@ -65,27 +65,27 @@ public class Game extends JFrame{
 
 
         //PROBLEM GENERATOR/INPUT PANEL
-        JPanel problemJPanel = new JPanel();
+        JPanel problemJPanel = new JPanel(new GridBagLayout());
         c.gridx = 0; 
         c.gridy = 0; 
         Panel problemPanel = new Panel(c, problemJPanel,"ProblemGenerator");
         panels.add(problemPanel);
 
         //PROBLEM SOLVER BOX LEVEL 1
-        JPanel solJPan = new JPanel();
+        JPanel solJPan = new JPanel(new GridBagLayout());
         c.gridx = 1;  
         Panel solverPanel = new Panel(c, solJPan,"ProblemSolverBox");
         panels.add(solverPanel);
         
         //PROBLEM SOLVER BOX LEVEL 2
-        JPanel solJPanL2 = new JPanel();
+        JPanel solJPanL2 = new JPanel(new GridBagLayout());
         c.gridx = 0; 
         c.gridy = 1; 
         Panel solverLevel2Panel = new Panel(c, solJPanL2,"ProblemSolverBoxLVL2");
         panels.add(solverLevel2Panel);
 
         //DISPLAY PANEL 
-        JPanel dispJPan = new JPanel();
+        JPanel dispJPan = new JPanel(new GridBagLayout());
         c.gridx = 1; 
         Panel displayPanel = new Panel(c, dispJPan,"Display1");
         panels.add(displayPanel);
