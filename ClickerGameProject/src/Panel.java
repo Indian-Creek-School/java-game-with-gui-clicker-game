@@ -55,6 +55,12 @@ public class Panel {
         }
 
         if (object.equals("Display1")) {
+            
+        
+
+
+
+
             return;
         }
 
