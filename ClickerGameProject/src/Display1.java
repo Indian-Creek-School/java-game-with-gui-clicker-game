@@ -12,10 +12,6 @@ public class Display1 {
         creativity = c;
     }
 
-    public int getTotalBits() { return totalBits; }
-    public int getFreeBits() { return freeBits; }
-    public int getCpuSpeed() { return cpuSpeedModifier; }
-    public int getcreativity() { return creativity; }
 
     public String getStringTotalBits() { return "Total Bits Produced: " + String.valueOf(totalBits); }
     public String getStringFreeBits() { return "Usable Bits: " + String.valueOf(freeBits); }

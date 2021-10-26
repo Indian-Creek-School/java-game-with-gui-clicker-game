@@ -64,13 +64,18 @@ public class Panel {
 
         if (object.equals("Display1")) {
             
-        
+            JLabel displayLabel = new JLabel();
 
+       
 
-
+            JLabel totBits = new JLabel("Total Bits Produced: " + Game.getTotalBits());
+            JLabel freeBits = new JLabel("Usable Bits: " + Game.getFreeBits());
+            JLabel cpu = new JLabel("CPU Multiplier:% " + Game.getCPU());
+            JLabel create = new JLabel ("Total Creativity: " + Game.getcreativity());
 
             return;
         }
+
 
     }
 
@@ -90,8 +95,23 @@ public class Panel {
         }
 
         if (object.equals("Display1")) {
+            Component[] displayLabels = panel.getComponents();
+            for(Component label : displayLabels) {
+                if (label instanceof JLabel) {
+                    ((JLabel)label).setText("Total Bits Produced: " + Game.getTotalBits());
+                }
+              
+                
+
+            }
+
+            
             return;
         }
         //should update one time-steps worth
+
+     
+
+
     }
 }
