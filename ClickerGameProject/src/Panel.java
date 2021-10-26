@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 public class Panel {
     private GridBagConstraints constraint;
+    private GridBagConstraints inside; //rename
     private JPanel panel;
     private String object;
 
