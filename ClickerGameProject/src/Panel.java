@@ -5,14 +5,14 @@ import java.awt.event.*;
 
 public class Panel {
     private GridBagConstraints constraint;
-    private GridBagConstraints inside; //rename
+    private GridBagConstraints c; //rename
     private JPanel panel;
     private String object;
 
     
 
-    public Panel(GridBagConstraints c, JPanel p, String o) {
-        constraint = c; //this is the constraints for OUTSIDE OF THE PANEL (inside the mainPanel); NOT THE INSIDE
+    public Panel(GridBagConstraints con, JPanel p, String o) {
+        constraint = con; //this is the constraints for OUTSIDE OF THE PANEL (inside the mainPanel); NOT THE INSIDE
         panel = p; //panel that will be edited
         object = o; //object type that will be used
     }
@@ -22,7 +22,9 @@ public class Panel {
     public GridBagConstraints getConstraints() { return constraint; }
 
 
+
     public void makeWindow() {
+
         if (object.equals("ProblemGenerator")) {
             ProblemGenerator problem = new ProblemGenerator();
             problem.generateQuestion();
@@ -31,12 +33,21 @@ public class Panel {
             JFormattedTextField answerTxt = new JFormattedTextField(10);
             JButton submitBtn = new JButton("Submit");
 
+            c.gridx = 0; 
+            c.gridy = 0; 
+            panel.add(display,c);
+            c.gridy = 1;
+            panel.add(answerTxt,c); 
+            c.gridy = 2;
+            panel.add(submitBtn,c);
+
             submitBtn.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if(answerTxt.getText().equals(Integer.toString(problem.getAnswer()))) {
                         Game.addBits(1);
-                        Panel.this.updateWindow();
+                        problem.generateQuestion();
+                        display.setText(problem.getQuestion());
                     }
                     answerTxt.setText(null);
                 } 
@@ -47,6 +58,14 @@ public class Panel {
             ProblemSolverBox solver = new ProblemSolverBox(1, "Automated Problem Solver");
             JButton addOne = new JButton("Buy Solver!");
             JLabel display = new JLabel("0");
+
+            c.gridx = 0; 
+            c.gridy = 0; 
+            panel.add(display,c);
+            c.gridy = 1;
+            panel.add(addOne,c); 
+
+
             addOne.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -84,7 +103,7 @@ public class Panel {
 
     public void updateWindow() {
         if (object.equals("ProblemGenerator")) {
-
+            //unessicary
         }
 
         if (object.equals("ProblemSolverBox")) { 
