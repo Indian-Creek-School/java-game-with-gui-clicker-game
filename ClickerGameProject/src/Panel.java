@@ -31,6 +31,10 @@ public class Panel {
             JFormattedTextField answerTxt = new JFormattedTextField(10);
             JButton submitBtn = new JButton("Submit");
 
+            panel.add(display, BorderLayout.NORTH);
+            panel.add(answerTxt, BorderLayout.SOUTH);
+            panel.add(submitBtn, BorderLayout.EAST);
+
             submitBtn.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -41,6 +45,8 @@ public class Panel {
                     answerTxt.setText(null);
                 } 
             } );
+            panel.revalidate();
+            panel.repaint();
         }
 
         if (object.equals("ProblemSolverBox")) {
