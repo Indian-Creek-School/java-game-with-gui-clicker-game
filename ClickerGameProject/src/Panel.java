@@ -33,6 +33,11 @@ public class Panel {
             JFormattedTextField answerTxt = new JFormattedTextField(10);
             JButton submitBtn = new JButton("Submit");
 
+<<<<<<< HEAD
+            panel.add(display, BorderLayout.NORTH);
+            panel.add(answerTxt, BorderLayout.SOUTH);
+            panel.add(submitBtn, BorderLayout.EAST);
+=======
             c.gridx = 0; 
             c.gridy = 0; 
             panel.add(display,c);
@@ -40,6 +45,7 @@ public class Panel {
             panel.add(answerTxt,c); 
             c.gridy = 2;
             panel.add(submitBtn,c);
+>>>>>>> refs/remotes/origin/main
 
             submitBtn.addActionListener(new ActionListener() {
                 @Override
@@ -52,6 +58,8 @@ public class Panel {
                     answerTxt.setText(null);
                 } 
             } );
+            panel.revalidate();
+            panel.repaint();
         }
 
         if (object.equals("ProblemSolverBox")) {
