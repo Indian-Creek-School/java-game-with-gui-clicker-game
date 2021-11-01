@@ -94,8 +94,7 @@ public class Game extends JFrame{
         panels.add(displayPanel);
 
         for(Panel p : panels) {
-            
-            mainPanel.add(p.getPanel(), BorderLayout.NORTH);//p.getConstraints());
+            mainPanel.add(p.getPanel(), p.getConstraints());//p.getConstraints());
             p.makeWindow();// changing the order of these lines removes the button added for testing purposes
       
         }
