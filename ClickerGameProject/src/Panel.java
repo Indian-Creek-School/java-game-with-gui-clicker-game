@@ -120,18 +120,8 @@ public class Panel {
                 if (label instanceof JLabel) {
                     ((JLabel)label).setText("Total Bits Produced: " + Game.getTotalBits());
                 }
-              
-                
-
             }
-
-            
-            return;
         }
         //should update one time-steps worth
-
-     
-
-
     }
 }
