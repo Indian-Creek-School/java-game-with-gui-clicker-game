@@ -5,7 +5,7 @@ import java.awt.event.*;
 
 public class Panel {
     private GridBagConstraints constraint;
-    private GridBagConstraints c; //rename
+    private GridBagConstraints c = new GridBagConstraints(); //rename
     private JPanel panel;
     private String object;
 
@@ -30,7 +30,8 @@ public class Panel {
             problem.generateQuestion();
 
             JLabel display = new JLabel(problem.getQuestion());
-            JFormattedTextField answerTxt = new JFormattedTextField(10);
+            JFormattedTextField answerTxt = new JFormattedTextField();
+            answerTxt.setColumns(7); 
             JButton submitBtn = new JButton("Submit");
 
             c.gridx = 0; 
@@ -50,6 +51,8 @@ public class Panel {
                         display.setText(problem.getQuestion());
                     }
                     answerTxt.setText(null);
+                    answerTxt.setColumns(7);
+                                       
                 } 
             } );
             panel.revalidate();

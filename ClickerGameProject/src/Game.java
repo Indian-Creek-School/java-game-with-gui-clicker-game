@@ -74,8 +74,9 @@ public class Game extends JFrame{
         Panel problemPanel = new Panel(c, problemJPanel,"ProblemGenerator");
         panels.add(problemPanel);
 
+        /*
         //PROBLEM SOLVER BOX LEVEL 1
-        JPanel solJPan = new JPanel(new GridBagLayout());
+         JPanel solJPan = new JPanel(new GridBagLayout());
         c.gridx = 1;  
         Panel solverPanel = new Panel(c, solJPan,"ProblemSolverBox");
         panels.add(solverPanel);
@@ -92,11 +93,13 @@ public class Game extends JFrame{
         c.gridx = 1; 
         Panel displayPanel = new Panel(c, dispJPan,"Display1");
         panels.add(displayPanel);
-
+        */
         for(Panel p : panels) {
             mainPanel.add(p.getPanel(), p.getConstraints());
             p.makeWindow();// changing the order of these lines removes the button added for testing purposes
-      
+        }
+        while(totalBits < 10) {
+            System.out.println(totalBits); 
         }
 
 
