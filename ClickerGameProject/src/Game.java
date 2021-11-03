@@ -56,9 +56,9 @@ public class Game extends JFrame{
         frame.setVisible(true); // Show the window
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel mainPanel = new JPanel(new BorderLayout());//new JPanel(new GridBagLayout()); //creates the main frame
+        JPanel mainPanel = new JPanel(new GridBagLayout());
         frame.getContentPane().add(mainPanel); //adds the main panel to the frame
-        mainPanel.add(new JButton("Hello"), BorderLayout.WEST);
+        //mainPanel.add(new JButton("Hello"), BorderLayout.WEST);
 
 
         //holds the list of specifications (contstraints) for each panel
@@ -68,7 +68,7 @@ public class Game extends JFrame{
 
 
         //PROBLEM GENERATOR/INPUT PANEL
-        JPanel problemJPanel = new JPanel(new BorderLayout());//new GridBagLayout());
+        JPanel problemJPanel = new JPanel(new GridBagLayout());
         c.gridx = 0; 
         c.gridy = 0; 
         Panel problemPanel = new Panel(c, problemJPanel,"ProblemGenerator");
@@ -94,7 +94,7 @@ public class Game extends JFrame{
         panels.add(displayPanel);
 
         for(Panel p : panels) {
-            mainPanel.add(p.getPanel(), p.getConstraints());//p.getConstraints());
+            mainPanel.add(p.getPanel(), p.getConstraints());
             p.makeWindow();// changing the order of these lines removes the button added for testing purposes
       
         }
