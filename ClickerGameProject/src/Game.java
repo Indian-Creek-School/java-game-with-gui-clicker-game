@@ -86,35 +86,36 @@ public class Game extends JFrame{
         ArrayList<MultiThread> threads = new ArrayList<MultiThread>();
         GridBagConstraints c = new GridBagConstraints();
 
+
+        
         //DISPLAY PANEL 
         JPanel dispJPan = new JPanel(new GridBagLayout());
-        c.gridx = 0;
-        c.gridy = 0; 
+        c.gridx = 0; 
+        c.gridy = 0;
         Panel displayPanel = new Panel(c, dispJPan,"Display1");
         panels.add(displayPanel); 
 
-        //PROBLEM GENERATOR/INPUT PANEL
-        JPanel problemJPanel = new JPanel(new GridBagLayout());
-        c.weighty = 0.1;
-        c.gridy = 1; 
-        Panel problemPanel = new Panel(c, problemJPanel,"ProblemGenerator");
-        panels.add(problemPanel);
-
-        
         //PROBLEM SOLVER BOX LEVEL 1
-         JPanel solJPan = new JPanel(new GridBagLayout());
-        c.weighty = 0.3;
-        c.gridx = 2;  
+        JPanel solJPan = new JPanel(new GridBagLayout());
+        c.weightx = 0.5;
+        c.gridx = 1;  
         Panel solverPanel = new Panel(c, solJPan,"ProblemSolverBox");
         panels.add(solverPanel);
-        
+
+        //PROBLEM GENERATOR/INPUT PANEL
+        JPanel problemJPanel = new JPanel(new GridBagLayout());
+        c.gridx = 0; 
+        c.weighty = 0.5;
+        c.gridy = 1; 
+        Panel problemPanel = new Panel(c, problemJPanel,"ProblemGenerator");
+        panels.add(problemPanel); 
+
         //PROBLEM SOLVER BOX LEVEL 2
          JPanel solJPanL2 = new JPanel(new GridBagLayout());
-        c.weighty = 0.5;
-        c.gridy = 3; 
+        c.weightx = 0.5;
+        c.gridx = 1; 
         Panel solverLevel2Panel = new Panel(c, solJPanL2,"ProblemSolverBoxLVL2");
         panels.add(solverLevel2Panel);
-
 
         
 
