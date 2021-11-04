@@ -61,8 +61,8 @@ public class Panel {
         }
 
         if (object.equals("ProblemSolverBox")) {
-            ProblemSolverBox solver = new ProblemSolverBox(1, "Automated Problem Solver");
-            JButton addOne = new JButton("Buy Solver!");
+            ProblemSolverBox solver = new ProblemSolverBox(1, "AutoSolver1");
+            JButton addOne = new JButton("Allocate Solver!");
             JLabel display = new JLabel("0");
             //panel.setSize(300, 200);
             //panel.setBackground(Color.green);
@@ -86,19 +86,33 @@ public class Panel {
         }
         
         if (object.equals("ProblemSolverBoxLVL2")) {
-            panel.setBackground(Color.red);
-            panel.setSize(250, 150);
-            return;
+            ProblemSolverBox solver = new ProblemSolverBox(1, "AutoSolver2");
+            JButton addOne = new JButton("Allocate Mega Solver!");
+            JLabel display = new JLabel("0");
+            //panel.setSize(300, 200);
+            //panel.setBackground(Color.green);
+            c.gridx = 0; 
+            c.gridy = 0; 
+            panel.add(display,c);
+            c.gridy = 1;
+            panel.add(addOne,c); 
+
+
+            addOne.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(Game.getFreeBits() >= 10) {
+                        Game.useBits(10);
+                        solver.addOneSolver();
+                        display.setText("Solvers:" + solver.getAmount());
+                    }
+                }
+            });
         }
 
         if (object.equals("Display1")) {
-            panel.setBackground(Color.blue);
-            panel.setSize(200, 100); 
             JLabel displayLabel = new JLabel();
-            
-
-       
-
+        
             JLabel totBits = new JLabel("Total Bits Produced: " + Game.getTotalBits());
             JLabel freeBits = new JLabel("Usable Bits: " + Game.getFreeBits());
             JLabel cpu = new JLabel("CPU Multiplier:% " + Game.getCPU());
