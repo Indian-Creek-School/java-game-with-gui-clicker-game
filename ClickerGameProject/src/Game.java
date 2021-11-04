@@ -22,19 +22,45 @@ import java.util.ArrayList;
 
 
 class MultiThread extends Thread {
-    public void run(Panel p)
+    Panel panel;
+
+    public MultiThread(Panel p) {
+        super();
+        panel = p;
+    }
+
+    public Panel getPanel() {
+        return panel;
+    }
+
+
+    public void setup() {
+        panel.makeWindow();
+    }
+
+    public void run()
     {
         try {
-            p.makeWindow();
-            // Displaying the thread that is running
-            System.out.println(
-                "Thread " + Thread.currentThread().getId()
-                + " is running");
+            System.out.println("test");
+            boolean run = true;
+            while(run == true) {
+                if(panel.getObject().equals("ProblemSolverBox") || panel.getObject().equals("ProblemSolverBoxLVL2")) {
+                    Thread.sleep(1000);
+                    panel.updateWindow();
+                }
+                else {
+                    Thread.sleep(100);
+                    panel.updateWindow();
+                }
+            }
+            //Displaying the thread that is running
+            System.out.println("Thread " + Thread.currentThread().getId() + " is running");
         }
 
         catch (Exception e) {
             // In the event of an error
-            System.out.println("Error has occured in thread " + getId());
+            //System.out.println("Error has occured in thread " + getId());
+            e.printStackTrace();
         }
     }
 }
@@ -88,17 +114,27 @@ public class Game extends JFrame{
 
 
         
+
         //DISPLAY PANEL 
-        JPanel dispJPan = new JPanel(new GridBagLayout());
+        JPanel dispJPan2 = new JPanel(new GridBagLayout());
         c.gridx = 0; 
         c.gridy = 0;
+        Panel displayPanel2 = new Panel(c, dispJPan2,"DisplayBits");
+        panels.add(displayPanel2); 
+
+        //DISPLAY PANEL 
+        JPanel dispJPan = new JPanel(new GridBagLayout());
+        c.weighty = 0.5;
+        c.gridy = 1;
+        c.gridx = 0;
         Panel displayPanel = new Panel(c, dispJPan,"Display1");
         panels.add(displayPanel); 
 
         //PROBLEM SOLVER BOX LEVEL 1
         JPanel solJPan = new JPanel(new GridBagLayout());
         c.weightx = 0.5;
-        c.gridx = 1;  
+        c.gridx = 1; 
+        c.gridy = 0; 
         Panel solverPanel = new Panel(c, solJPan,"ProblemSolverBox");
         panels.add(solverPanel);
 
@@ -121,25 +157,16 @@ public class Game extends JFrame{
 
         for(Panel p : panels) {
             mainPanel.add(p.getPanel(), p.getConstraints());
-            MultiThread object = new MultiThread();
+            System.out.println("current panel is: " + p.getObject());
+            MultiThread object = new MultiThread(p);
             threads.add(object);
             object.start();
-            object.run(p);
+            object.setup();
         }
 
-        
-        
-                
-            
-        
-
-
-
-        while(totalBits < 10) {
-        //    System.out.println("Total: " + totalBits + "   Free Bits: " + freeBits);
-            return;
+        for(int i = 0; i < threads.size(); i++) {
+            threads.get(i).run();
         }
-
 
     }
 

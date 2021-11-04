@@ -9,6 +9,9 @@ public class Panel {
     private JPanel panel;
     private String object;
 
+    ProblemSolverBox solver = new ProblemSolverBox(1, "AutoSolver1");
+    ProblemSolverBox solver2 = new ProblemSolverBox(5, "AutoSolver2");
+
     
 
     public Panel(GridBagConstraints con, JPanel p, String o) {
@@ -56,16 +59,13 @@ public class Panel {
                                        
                 } 
             } );
-            panel.revalidate();
+            panel.validate();
             panel.repaint();
         }
 
         if (object.equals("ProblemSolverBox")) {
-            ProblemSolverBox solver = new ProblemSolverBox(1, "AutoSolver1");
             JButton addOne = new JButton("Allocate Solver!");
             JLabel display = new JLabel("0");
-            //panel.setSize(300, 200);
-            //panel.setBackground(Color.green);
             c.gridx = 0; 
             c.gridy = 0; 
             panel.add(display,c);
@@ -76,21 +76,18 @@ public class Panel {
             addOne.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(Game.getFreeBits() >= 2) {
-                        Game.useBits(2);
+                    if(Game.getFreeBits() >= 5) {
+                        Game.useBits(5);
                         solver.addOneSolver();
-                        display.setText("Solvers:" + solver.getAmount());
+                        display.setText("Allocated Solvers: " + solver.getAmount());
                     }
                 }
             });
         }
         
         if (object.equals("ProblemSolverBoxLVL2")) {
-            ProblemSolverBox solver = new ProblemSolverBox(1, "AutoSolver2");
             JButton addOne = new JButton("Allocate Mega Solver!");
             JLabel display = new JLabel("0");
-            //panel.setSize(300, 200);
-            //panel.setBackground(Color.green);
             c.gridx = 0; 
             c.gridy = 0; 
             panel.add(display,c);
@@ -101,21 +98,33 @@ public class Panel {
             addOne.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(Game.getFreeBits() >= 10) {
-                        Game.useBits(10);
+                    if(Game.getFreeBits() >= 50) {
+                        Game.useBits(50);
                         solver.addOneSolver();
-                        display.setText("Solvers:" + solver.getAmount());
+                        display.setText("Allocated Solvers: " + solver.getAmount());
                     }
                 }
             });
         }
 
         if (object.equals("Display1")) {
-            JLabel displayLabel = new JLabel();
-            JLabel totBits = new JLabel("Total Bits Produced: " + Game.getTotalBits());
             JLabel freeBits = new JLabel("Usable Bits: " + Game.getFreeBits());
-            JLabel cpu = new JLabel("CPU Multiplier:% " + Game.getCPU());
+            JLabel cpu = new JLabel("CPU Multiplier: %" + Game.getCPU());
             JLabel create = new JLabel ("Total Creativity: " + Game.getcreativity());
+            c.gridx= 0;
+            c.gridy = 0;
+            panel.add(freeBits,c);
+            c.gridy = 1; 
+            panel.add(cpu,c);
+            c.gridy = 2;
+            panel.add(create,c);
+        }
+
+        if (object.equals("DisplayBits")) {
+            JLabel totBits = new JLabel("Total Bits Produced: " + Game.getTotalBits());
+            c.gridx = 0; 
+            c.gridy = 0; 
+            panel.add(totBits,c);
         }
 
 
@@ -129,14 +138,33 @@ public class Panel {
         }
 
         if (object.equals("ProblemSolverBox")) { 
-
+            Game.addBits(solver.calculateGains());
         }
 
         if (object.equals("ProblemSolverBoxLVL2")) {
-            return;
+            Game.addBits(solver2.calculateGains());
         }
 
         if (object.equals("Display1")) {
+            Component[] displayLabels = panel.getComponents();
+            int i = 0;
+            for(Component label : displayLabels) {
+                if (label instanceof JLabel) {
+                    i++;
+                    if (i == 1) {
+                        ((JLabel)label).setText("Usable Bits: " + Game.getFreeBits());
+                    }
+                    if (i == 2) {
+                        ((JLabel)label).setText("CPU Multiplier:% " + Game.getCPU());
+                    }
+                    if (i == 3) {
+                        ((JLabel)label).setText("Total Creativity: " + Game.getcreativity());
+                    }
+                }
+            }
+        }
+        
+        if (object.equals("DisplayBits")) {
             Component[] displayLabels = panel.getComponents();
             for(Component label : displayLabels) {
                 if (label instanceof JLabel) {
@@ -144,6 +172,8 @@ public class Panel {
                 }
             }
         }
-        //should update one time-steps worth
+
+        panel.validate();
+        panel.repaint();
     }
 }
