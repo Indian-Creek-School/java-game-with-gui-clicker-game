@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.text.NumberFormat;
 
 
 public class Panel {
@@ -65,7 +66,7 @@ public class Panel {
 
         if (object.equals("ProblemSolverBox")) {
             JButton addOne = new JButton("Allocate Solver!");
-            JLabel display = new JLabel("0");
+            JLabel display = new JLabel("Allocated Solvers: 0");
             c.gridx = 0; 
             c.gridy = 0; 
             panel.add(display,c);
@@ -87,7 +88,7 @@ public class Panel {
         
         if (object.equals("ProblemSolverBoxLVL2")) {
             JButton addOne = new JButton("Allocate Mega Solver!");
-            JLabel display = new JLabel("0");
+            JLabel display = new JLabel("Allocated Solvers: 0");
             c.gridx = 0; 
             c.gridy = 0; 
             panel.add(display,c);
@@ -111,6 +112,7 @@ public class Panel {
             JLabel freeBits = new JLabel("Usable Bits: " + Game.getFreeBits());
             JLabel cpu = new JLabel("CPU Multiplier: %" + Game.getCPU());
             JLabel create = new JLabel ("Total Creativity: " + Game.getcreativity());
+            "<html>Usable Bits:  + Game.getFreeBits()<br/>blahblahblah</html>"
             c.gridx= 0;
             c.gridy = 0;
             panel.add(freeBits,c);
@@ -122,6 +124,10 @@ public class Panel {
 
         if (object.equals("DisplayBits")) {
             JLabel totBits = new JLabel("Total Bits Produced: " + Game.getTotalBits());
+            Font f = new Font("Courier", Font.BOLD,30);
+            totBits.setFont(f);
+            totBits.setHorizontalAlignment(JLabel.CENTER);
+            
             c.gridx = 0; 
             c.gridy = 0; 
             panel.add(totBits,c);
@@ -152,13 +158,13 @@ public class Panel {
                 if (label instanceof JLabel) {
                     i++;
                     if (i == 1) {
-                        ((JLabel)label).setText("Usable Bits: " + Game.getFreeBits());
+                        ((JLabel)label).setText("Usable Bits: " + NumberFormat.getIntegerInstance().format(Game.getFreeBits()));
                     }
                     if (i == 2) {
                         ((JLabel)label).setText("CPU Multiplier:% " + Game.getCPU());
                     }
                     if (i == 3) {
-                        ((JLabel)label).setText("Total Creativity: " + Game.getcreativity());
+                        ((JLabel)label).setText("Total Creativity: " + NumberFormat.getIntegerInstance().format(Game.getcreativity()));
                     }
                 }
             }
@@ -168,7 +174,8 @@ public class Panel {
             Component[] displayLabels = panel.getComponents();
             for(Component label : displayLabels) {
                 if (label instanceof JLabel) {
-                    ((JLabel)label).setText("Total Bits Produced: " + Game.getTotalBits());
+                    ((JLabel)label).setText("Total Bits Produced: " + 
+                    NumberFormat.getIntegerInstance().format(Game.getTotalBits()));
                 }
             }
         }
