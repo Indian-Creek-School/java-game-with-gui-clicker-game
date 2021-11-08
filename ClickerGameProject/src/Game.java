@@ -32,7 +32,6 @@ class MultiThread extends Thread {
                 }
 
                 else if(panel.getObject().equals("NotificationDisplay")) {
-                    //Thread.sleep(1000);
                     Thread.sleep(10000);
                     panel.updateWindow();
                 }

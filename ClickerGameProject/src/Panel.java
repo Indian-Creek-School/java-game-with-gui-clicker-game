@@ -10,6 +10,10 @@ public class Panel {
     private JPanel panel;
     private String object;
 
+    private JLabel lbl;
+    private JButton bttn;
+    private Boolean flip = true;
+
     ProblemSolverBox solver = new ProblemSolverBox(1, "AutoSolver1");
     ProblemSolverBox solver2 = new ProblemSolverBox(5, "AutoSolver2");
 
@@ -72,8 +76,10 @@ public class Panel {
             c.gridx = 0; 
             c.gridy = 0; 
             panel.add(display,c);
+            display.setVisible(false);
             c.gridy = 1;
             panel.add(addOne,c); 
+            addOne.setVisible(false);
             c.gridx = 1;
             c.gridy = 1;
             panel.add(upgrade,c);
@@ -81,6 +87,9 @@ public class Panel {
             c.gridy = 0;
             panel.add(upDog,c);
             upDog.setVisible(false);
+
+            bttn = addOne;
+            lbl = display;
 
             addOne.addActionListener(new ActionListener() {
                 @Override
@@ -111,8 +120,10 @@ public class Panel {
             c.gridx = 0; 
             c.gridy = 0; 
             panel.add(display,c);
+            display.setVisible(false);
             c.gridy = 1;
             panel.add(addOne,c); 
+            addOne.setVisible(false);
             c.gridx = 1;
             panel.add(upgrade,c);
             upgrade.setVisible(false);
@@ -120,6 +131,8 @@ public class Panel {
             panel.add(upDog,c);
             upDog.setVisible(false);
 
+            bttn = addOne;
+            lbl = display;
 
             addOne.addActionListener(new ActionListener() {
                 @Override
@@ -195,15 +208,24 @@ public class Panel {
                     c.setVisible(true);
                 }
             }
+            if (flip && Game.getTotalBits() > 5) {
+                lbl.setVisible(true);
+                bttn.setVisible(true);
+                flip = false;
+            }
         }
 
         if (object.equals("ProblemSolverBoxLVL2")) {
             Game.addBits(solver2.calculateGains());
-
             if (Game.getcreativity() >= 100) {
                 for(Component c : comps) {
                     c.setVisible(true);
                 }
+            }
+            if (flip && Game.getTotalBits() > 100) {
+                lbl.setVisible(true);
+                bttn.setVisible(true);
+                flip = false;
             }
         }
 
@@ -242,9 +264,9 @@ public class Panel {
             for(Component label : comps) {
                 if (label instanceof JLabel) {
     
-                    if (Game.getTotalBits() >= 10000 && Game.getTotalBits() <= 25000) {
+                    if (Game.getTotalBits() >= 25000 && Game.getTotalBits() <= 50000) {
                         if (Game.getcreativity() == -1) {
-                            ((JLabel)label).setText("I wonder what would happen if I save up over 1,000 idle bits...");
+                            ((JLabel)label).setText("I wonder what would happen if I save up over 10,000 idle bits...");
                         }
                         else {
                             ((JLabel)label).setText("");
