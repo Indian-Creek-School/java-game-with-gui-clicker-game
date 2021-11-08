@@ -1,24 +1,8 @@
 import java.awt.*;
-import javax.swing.*;
-
 import java.util.ArrayList;
-import javax.swing.AbstractButton;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout.Constraints;
-import javax.swing.BoxLayout;
-import java.awt.Component;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.util.ArrayList;
+
 
 
 class MultiThread extends Thread {
@@ -32,8 +16,6 @@ class MultiThread extends Thread {
     public Panel getPanel() {
         return panel;
     }
-
-
     public void setup() {
         panel.makeWindow();
     }
@@ -41,20 +23,26 @@ class MultiThread extends Thread {
     public void run()
     {
         try {
-            System.out.println("test");
-            boolean run = true;
-            while(run == true) {
+            System.out.println("Thread " + Thread.currentThread().getId() + " is running");
+            System.out.println(" ");
+            while(true) {
                 if(panel.getObject().equals("ProblemSolverBox") || panel.getObject().equals("ProblemSolverBoxLVL2")) {
                     Thread.sleep(1000);
                     panel.updateWindow();
                 }
+
+                else if(panel.getObject().equals("NotificationDisplay")) {
+                    //Thread.sleep(1000);
+                    Thread.sleep(10000);
+                    panel.updateWindow();
+                }
+
                 else {
                     Thread.sleep(100);
                     panel.updateWindow();
                 }
             }
             //Displaying the thread that is running
-            System.out.println("Thread " + Thread.currentThread().getId() + " is running");
         }
 
         catch (Exception e) {
@@ -75,7 +63,7 @@ public class Game extends JFrame{
     private static int freeBits; //availible memory to use elswhere
 
     private static int cpuSpeedModifier; //int cpu modifier
-    private static int creativity; //amount of creativity availible to use
+    private static int creativity = -1; //amount of creativity availible to use
     
 
 
@@ -144,7 +132,7 @@ public class Game extends JFrame{
         c.gridy = 1; 
         Panel solverPanel = new Panel(c, solJPan,"ProblemSolverBox");
         panels.add(solverPanel);
-
+        
         //PROBLEM SOLVER BOX LEVEL 2
          JPanel solJPanL2 = new JPanel(new GridBagLayout());
         c.weightx = 0.5;
@@ -153,7 +141,17 @@ public class Game extends JFrame{
         c.gridy = 2;
         Panel solverLevel2Panel = new Panel(c, solJPanL2,"ProblemSolverBoxLVL2");
         panels.add(solverLevel2Panel);
-
+        
+        //NOTIFICATION DISPLAY PANEL
+        JPanel notifJPan = new JPanel(new GridBagLayout());
+        c.weightx = 0;
+        c.gridx = 0; 
+        c.weighty = 1.0;
+        c.gridy = 3; 
+        c.anchor = GridBagConstraints.PAGE_END;
+        Panel notifPanel = new Panel(c, notifJPan,"NotificationDisplay");
+        panels.add(notifPanel);
+        
         
 
         for(Panel p : panels) {
@@ -175,6 +173,11 @@ public class Game extends JFrame{
     public static int getFreeBits() { return freeBits; }
     public static int getCPU() { return cpuSpeedModifier; }
     public static int getcreativity() { return creativity; }
+
+
+    public static void addCreativity(int c) { 
+        creativity = creativity + c; 
+    }
 
     public static void addBits(int b) { 
         freeBits = freeBits + b;

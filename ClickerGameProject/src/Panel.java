@@ -111,8 +111,8 @@ public class Panel {
         if (object.equals("Display1")) {
             JLabel freeBits = new JLabel("Usable Bits: " + Game.getFreeBits());
             JLabel cpu = new JLabel("CPU Multiplier: %" + Game.getCPU());
-            JLabel create = new JLabel ("Total Creativity: " + Game.getcreativity());
-            "<html>Usable Bits:  + Game.getFreeBits()<br/>blahblahblah</html>"
+            JLabel create = new JLabel (" ");
+            //"<html>Usable Bits:  + Game.getFreeBits()<br/>blahblahblah</html>"
             c.gridx= 0;
             c.gridy = 0;
             panel.add(freeBits,c);
@@ -133,12 +133,21 @@ public class Panel {
             panel.add(totBits,c);
         }
 
+        if (object.equals("NotificationDisplay")) {
+            JLabel notifications = new JLabel("");
+            Font f = new Font("Courier", Font.BOLD,20);
+            notifications.setFont(f);
 
+            c.gridx = 0;
+            c.gridy = 0;
+            panel.add(notifications,c);
+        }
     }
 
 
 
     public void updateWindow() {
+        Component[] comps = panel.getComponents();
         if (object.equals("ProblemGenerator")) {
             //unessicary
         }
@@ -152,9 +161,12 @@ public class Panel {
         }
 
         if (object.equals("Display1")) {
-            Component[] displayLabels = panel.getComponents();
             int i = 0;
-            for(Component label : displayLabels) {
+            if(Game.getFreeBits() >= 1000) {
+                Game.addCreativity((Integer)Game.getFreeBits()/10000);
+            }
+            
+            for(Component label : comps) {
                 if (label instanceof JLabel) {
                     i++;
                     if (i == 1) {
@@ -163,7 +175,7 @@ public class Panel {
                     if (i == 2) {
                         ((JLabel)label).setText("CPU Multiplier:% " + Game.getCPU());
                     }
-                    if (i == 3) {
+                    if (i == 3 && Game.getcreativity() != -1) {
                         ((JLabel)label).setText("Total Creativity: " + NumberFormat.getIntegerInstance().format(Game.getcreativity()));
                     }
                 }
@@ -171,11 +183,26 @@ public class Panel {
         }
         
         if (object.equals("DisplayBits")) {
-            Component[] displayLabels = panel.getComponents();
-            for(Component label : displayLabels) {
+            for(Component label : comps) {
                 if (label instanceof JLabel) {
                     ((JLabel)label).setText("Total Bits Produced: " + 
                     NumberFormat.getIntegerInstance().format(Game.getTotalBits()));
+                }
+            }
+        }
+
+        if (object.equals("NotificationDisplay")) {
+            for(Component label : comps) {
+                if (label instanceof JLabel) {
+    
+                    if (Game.getTotalBits() >= 10000 && Game.getTotalBits() <= 25000) {
+                        if (Game.getcreativity() == -1) {
+                            ((JLabel)label).setText("I wonder what would happen if I save up over 1,000 idle bits...");
+                        }
+                        else {
+                            ((JLabel)label).setText("");
+                        }
+                    }
                 }
             }
         }
