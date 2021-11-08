@@ -179,6 +179,7 @@ public class Panel {
                     if(Game.getcreativity() >= 100) {
                         Game.useCreativity(100);
                         solver2.addToMultiplier(1);
+                        Game.addCPU(100);
                     }
                 }
             });

@@ -161,6 +161,9 @@ public class Game extends JFrame{
     public static int getCPU() { return cpuSpeedModifier; }
     public static int getcreativity() { return creativity; }
 
+    public static void addCPU(int c) {
+        cpuSpeedModifier = cpuSpeedModifier + c;
+    }
 
     public static void addCreativity(int c) { 
         creativity = creativity + c; 
