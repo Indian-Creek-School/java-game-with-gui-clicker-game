@@ -203,9 +203,13 @@ public class Panel {
         }
 
         if (object.equals("Display1")) {
+            Font f = new Font("Courier",Font.ITALIC,20);
             JLabel freeBits = new JLabel("Usable Bits: " + Game.getFreeBits());
             JLabel cpu = new JLabel("CPU Multiplier: %" + Game.getCPU());
+            freeBits.setFont(f);
+            cpu.setFont(f);
             JLabel create = new JLabel (" ");
+            create.setFont(f);
             //"<html>Usable Bits:  + Game.getFreeBits()<br/>blahblahblah</html>"
             c.gridx= 0;
             c.gridy = 0;
