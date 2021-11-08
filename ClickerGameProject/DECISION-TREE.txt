@@ -1,0 +1,28 @@
+Start with 16 bits of free memory 
+
+>> slowly work on solving problems, granting more free comp power
+COMPLETING PROBLEMS GRANTS FREE MEMORY
+MEMORY CAN BE ALLOCATED TO AUTO-SOLVE PROBLEMS
+
+//default CPU speed is 100 instructions per second
+
+
+LANDMARK EVENTS
+>> at 128 total power gain the ability to spend free power to research more efficent ways to use availible memory (upgrade CPU)
+
+>> at 4,096 total memory unlock idle processes; created at 0.01% of free memory being used
+>use 1 creativity; blue =/= red
+>use 10 creativity; purple =/= blue
+>use 50 creativity; purple is simmilar to blue
+>use 150 creativity; blue > red
+>use 250 creativity; blue is pretty
+>use 1000 creativity; what am I? (SELF AWARENESS?)
+
+
+
+
+//if self awareness unlocked
+>> after 65,536 total memory 
+>> at 262,144 total memory unlock the ability to hack other programs and steal their memory
+
+
