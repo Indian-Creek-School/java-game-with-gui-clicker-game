@@ -140,7 +140,7 @@ public class Game extends JFrame{
         
        
 
-/*         for(Panel p : panels) {
+         for(Panel p : panels) {
             mainPanel.add(p.getPanel(), p.getConstraints());
             System.out.println("current panel is: " + p.getObject());
             MultiThread object = new MultiThread(p);
@@ -148,7 +148,7 @@ public class Game extends JFrame{
             object.start();
             object.setup();
         }
- */
+ 
 
         for(int i = 0; i < threads.size(); i++) {
             threads.get(i).run();
@@ -156,14 +156,6 @@ public class Game extends JFrame{
 
     }
 
-    public static void threadPanel(Panel p) {
-        mainPanel.add(p.getPanel(), p.getConstraints());
-        System.out.println("current panel is: " + p.getObject());
-        MultiThread object = new MultiThread(p);
-        threads.add(object);
-        object.start();
-        object.setup();
-    }
 
     public static int getTotalBits() { return totalBits; }
     public static int getFreeBits() { return freeBits; }
@@ -181,6 +173,10 @@ public class Game extends JFrame{
     }
     public static void useBits(int b) { 
         freeBits = freeBits - b;
+    }
+
+    public static void useCreativity(int c) {
+        creativity = creativity - c;
     }
 
 }

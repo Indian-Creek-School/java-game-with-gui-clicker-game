@@ -67,12 +67,20 @@ public class Panel {
         if (object.equals("ProblemSolverBox")) {
             JButton addOne = new JButton("Allocate Solver!");
             JLabel display = new JLabel("Allocated Solvers: 0");
+            JButton upgrade = new JButton("Upgrade!");
+            JLabel upDog = new JLabel("(100 Creativity)");
             c.gridx = 0; 
             c.gridy = 0; 
             panel.add(display,c);
             c.gridy = 1;
             panel.add(addOne,c); 
-
+            c.gridx = 1;
+            c.gridy = 1;
+            panel.add(upgrade,c);
+            upgrade.setVisible(false);
+            c.gridy = 0;
+            panel.add(upDog,c);
+            upDog.setVisible(false);
 
             addOne.addActionListener(new ActionListener() {
                 @Override
@@ -84,16 +92,33 @@ public class Panel {
                     }
                 }
             });
+            upgrade.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(Game.getcreativity() >= 100) {
+                        Game.useCreativity(100);
+                        solver.addToMultiplier(1);
+                    }
+                }
+            });
         }
         
         if (object.equals("ProblemSolverBoxLVL2")) {
             JButton addOne = new JButton("Allocate Mega Solver!");
             JLabel display = new JLabel("Allocated Solvers: 0");
+            JButton upgrade = new JButton("Upgrade!");
+            JLabel upDog = new JLabel("(100 Creativity)");
             c.gridx = 0; 
             c.gridy = 0; 
             panel.add(display,c);
             c.gridy = 1;
             panel.add(addOne,c); 
+            c.gridx = 1;
+            panel.add(upgrade,c);
+            upgrade.setVisible(false);
+            c.gridy = 0;
+            panel.add(upDog,c);
+            upDog.setVisible(false);
 
 
             addOne.addActionListener(new ActionListener() {
@@ -101,8 +126,17 @@ public class Panel {
                 public void actionPerformed(ActionEvent e) {
                     if(Game.getFreeBits() >= 50) {
                         Game.useBits(50);
-                        solver.addOneSolver();
-                        display.setText("Allocated Solvers: " + solver.getAmount());
+                        solver2.addOneSolver();
+                        display.setText("Allocated Solvers: " + solver2.getAmount());
+                    }
+                }
+            });
+            upgrade.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(Game.getcreativity() >= 100) {
+                        Game.useCreativity(100);
+                        solver2.addToMultiplier(1);
                     }
                 }
             });
@@ -141,6 +175,7 @@ public class Panel {
             c.gridx = 0;
             c.gridy = 0;
             panel.add(notifications,c);
+
         }
     }
 
@@ -154,10 +189,22 @@ public class Panel {
 
         if (object.equals("ProblemSolverBox")) { 
             Game.addBits(solver.calculateGains());
+
+            if (Game.getcreativity() >= 100) {
+                for(Component c : comps) {
+                    c.setVisible(true);
+                }
+            }
         }
 
         if (object.equals("ProblemSolverBoxLVL2")) {
             Game.addBits(solver2.calculateGains());
+
+            if (Game.getcreativity() >= 100) {
+                for(Component c : comps) {
+                    c.setVisible(true);
+                }
+            }
         }
 
         if (object.equals("Display1")) {
