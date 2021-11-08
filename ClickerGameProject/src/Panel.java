@@ -169,7 +169,7 @@ public class Panel {
                     if(Game.getFreeBits() >= 50) {
                         Game.useBits(50);
                         solver2.addOneSolver();
-                        display.setText("Allocated Solvers: " + solver2.getAmount());
+                        
                     }
                 }
             });
@@ -180,6 +180,7 @@ public class Panel {
                         Game.useCreativity(100);
                         solver2.addToMultiplier(1);
                         Game.addCPU(100);
+                        
                     }
                 }
             });
@@ -201,6 +202,7 @@ public class Panel {
                     }
                 }
             });
+            display.setText("Allocated Solvers: " + solver2.getAmount());
         }
 
         if (object.equals("Display1")) {
@@ -309,7 +311,7 @@ public class Panel {
                         ((JLabel)label).setText("Usable Bits: " + NumberFormat.getIntegerInstance().format(Game.getFreeBits()));
                     }
                     if (i == 2) {
-                        ((JLabel)label).setText("CPU Multiplier:% " + Game.getCPU());
+                        ((JLabel)label).setText("CPU Multiplier: %" + Game.getCPU());
                     }
                     if (i == 3 && Game.getcreativity() != -1) {
                         ((JLabel)label).setText("Total Creativity: " + NumberFormat.getIntegerInstance().format(Game.getcreativity()));
