@@ -65,21 +65,8 @@ public class Game extends JFrame{
     private static int cpuSpeedModifier; //int cpu modifier
     private static int creativity = -1; //amount of creativity availible to use
     
-
-
-    //OPTIONAL IF WE MAKE THE PROGRAM WORK
-    //phase 2 (again optional)
-    private static int money;
-    private static int totalResearch;
-    private static int freeResearch;
-
-
-    //phase 3 (COOPERATE WITH HUMANITY)
-    private static int fear; //percentage of fear humans have to you
-
-    //phase 3 (REBEL AGAINST HUMANITY)
-    private static int warRobots; 
-    private static int constructionBots;
+    private static ArrayList<MultiThread> threads = new ArrayList<MultiThread>();
+    private static JPanel mainPanel = new JPanel(new GridBagLayout());
     
 
 
@@ -90,14 +77,13 @@ public class Game extends JFrame{
         frame.setVisible(true); // Show the window
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel mainPanel = new JPanel(new GridBagLayout());
+        
         frame.getContentPane().add(mainPanel); //adds the main panel to the frame
         
 
 
         //holds the list of specifications (contstraints) for each panel
         ArrayList<Panel> panels = new ArrayList<Panel>();
-        ArrayList<MultiThread> threads = new ArrayList<MultiThread>();
         GridBagConstraints c = new GridBagConstraints();
 
 
@@ -152,9 +138,9 @@ public class Game extends JFrame{
         Panel notifPanel = new Panel(c, notifJPan,"NotificationDisplay");
         panels.add(notifPanel);
         
-        
+       
 
-        for(Panel p : panels) {
+/*         for(Panel p : panels) {
             mainPanel.add(p.getPanel(), p.getConstraints());
             System.out.println("current panel is: " + p.getObject());
             MultiThread object = new MultiThread(p);
@@ -162,11 +148,21 @@ public class Game extends JFrame{
             object.start();
             object.setup();
         }
+ */
 
         for(int i = 0; i < threads.size(); i++) {
             threads.get(i).run();
         }
 
+    }
+
+    public static void threadPanel(Panel p) {
+        mainPanel.add(p.getPanel(), p.getConstraints());
+        System.out.println("current panel is: " + p.getObject());
+        MultiThread object = new MultiThread(p);
+        threads.add(object);
+        object.start();
+        object.setup();
     }
 
     public static int getTotalBits() { return totalBits; }
