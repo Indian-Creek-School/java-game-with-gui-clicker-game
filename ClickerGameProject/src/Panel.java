@@ -12,7 +12,10 @@ public class Panel {
 
     private JLabel lbl;
     private JButton bttn;
+    private JButton bttn2;
+    private JButton bttn3;
     private Boolean flip = true;
+    private Boolean flip2 = true;
 
     ProblemSolverBox solver = new ProblemSolverBox(1, "AutoSolver1");
     ProblemSolverBox solver2 = new ProblemSolverBox(5, "AutoSolver2");
@@ -64,6 +67,18 @@ public class Panel {
                                        
                 } 
             } );
+            answerTxt.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(answerTxt.getText().equals(Integer.toString(problem.getAnswer()))) {
+                        Game.addBits(1);
+                        problem.generateQuestion();
+                        display.setText(problem.getQuestion());
+                    }
+                    answerTxt.setText(null);
+                    answerTxt.setColumns(7);
+                }
+            } );
             panel.validate();
             panel.repaint();
         }
@@ -73,6 +88,7 @@ public class Panel {
             JLabel display = new JLabel("Allocated Solvers: 0");
             JButton upgrade = new JButton("Upgrade!");
             JLabel upDog = new JLabel("(100 Creativity)");
+
             c.gridx = 0; 
             c.gridy = 0; 
             panel.add(display,c);
@@ -117,6 +133,10 @@ public class Panel {
             JLabel display = new JLabel("Allocated Solvers: 0");
             JButton upgrade = new JButton("Upgrade!");
             JLabel upDog = new JLabel("(100 Creativity)");
+            JButton addFive = new JButton("Allocate 5x Solvers");
+            JButton addTwenty = new JButton("Allocated 25x Solvers");
+
+
             c.gridx = 0; 
             c.gridy = 0; 
             panel.add(display,c);
@@ -130,9 +150,18 @@ public class Panel {
             c.gridy = 0;
             panel.add(upDog,c);
             upDog.setVisible(false);
+            c.gridx = 0;
+            c.gridy = 2;
+            panel.add(addFive,c);
+            addFive.setVisible(false);
+            c.gridx = 1;
+            panel.add(addTwenty, c);
+            addTwenty.setVisible(false);
 
             bttn = addOne;
             lbl = display;
+            bttn2 = addFive;
+            bttn3 = addTwenty;
 
             addOne.addActionListener(new ActionListener() {
                 @Override
@@ -150,6 +179,24 @@ public class Panel {
                     if(Game.getcreativity() >= 100) {
                         Game.useCreativity(100);
                         solver2.addToMultiplier(1);
+                    }
+                }
+            });
+            addFive.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(Game.getFreeBits() >= 250) {
+                        Game.useBits(250);
+                        solver2.addManySolvers(5);
+                    }
+                }
+            });
+            addTwenty.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(Game.getFreeBits() >= 1250) {
+                        Game.useBits(1250);
+                        solver2.addManySolvers(25);
                     }
                 }
             });
@@ -197,7 +244,11 @@ public class Panel {
     public void updateWindow() {
         Component[] comps = panel.getComponents();
         if (object.equals("ProblemGenerator")) {
-            //unessicary
+            if(Game.getTotalBits() > 30) {
+                for(Component c : comps) {
+                    c.setVisible(false);   
+                }
+            }
         }
 
         if (object.equals("ProblemSolverBox")) { 
@@ -208,10 +259,15 @@ public class Panel {
                     c.setVisible(true);
                 }
             }
-            if (flip && Game.getTotalBits() > 5) {
+            if (flip && Game.getFreeBits() >= 5) {
                 lbl.setVisible(true);
                 bttn.setVisible(true);
                 flip = false;
+            }
+            if (!flip && Game.getFreeBits() < 5) {
+                lbl.setVisible(false);
+                bttn.setVisible(false);
+                flip = true;
             }
         }
 
@@ -226,6 +282,12 @@ public class Panel {
                 lbl.setVisible(true);
                 bttn.setVisible(true);
                 flip = false;
+            }
+            if (Game.getTotalBits() > 5000) {
+                bttn2.setVisible(true);
+            }
+            if (Game.getTotalBits() > 15000) {
+                bttn3.setVisible(true);
             }
         }
 
@@ -264,7 +326,7 @@ public class Panel {
             for(Component label : comps) {
                 if (label instanceof JLabel) {
     
-                    if (Game.getTotalBits() >= 25000 && Game.getTotalBits() <= 50000) {
+                    if (Game.getTotalBits() >= 10000 && Game.getTotalBits() <= 25000) {
                         if (Game.getcreativity() == -1) {
                             ((JLabel)label).setText("I wonder what would happen if I save up over 10,000 idle bits...");
                         }
